@@ -1,0 +1,29 @@
+/*
+|--------------------------------------------------------------------------
+| Website Desa - Master Stylesheet
+|--------------------------------------------------------------------------
+| Halo! Ini adalah file utama CSS. Untuk memudahkan kamu mengedit website,
+| file CSS telah dipisah-pisah berdasarkan kegunaannya.
+|
+| Silakan pilih file mana yang ingin kamu edit:
+|
+| 1. global.css     -> Warna tema, Menu atas (Navbar), Bagian bawah (Footer).
+| 2. components.css -> Bentuk tombol, kartu, form input, dll.
+| 3. pages/         -> Gaya khusus untuk setiap halaman (Beranda, Tentang, dll).
+|
+*/
+
+/* Dasar & Layout Utama */
+@import url('global.css');
+
+/* Komponen Antarmuka */
+@import url('components.css');
+
+/* Halaman-Halaman Spesifik */
+@import url('pages/beranda.css');
+@import url('pages/transparansi.css');
+@import url('pages/profil-desa.css');
+@import url('pages/peta.css');
+@import url('pages/admin.css');
+
+/* Tambahkan gaya kustom kamu di bawah ini jika tidak ingin mengganggu file lain */

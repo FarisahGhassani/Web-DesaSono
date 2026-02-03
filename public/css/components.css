@@ -1,0 +1,159 @@
+/*
+|--------------------------------------------------------------------------
+| UI Components
+|--------------------------------------------------------------------------
+| File ini berisi gaya untuk komponen yang sering muncul seperti:
+| Tombol, Kartu (Card), Form Input, Tabel, dan Alert.
+| Edit di sini jika ingin mengubah bentuk tombol atau kartu.
+*/
+
+/* TOMBOL (Buttons) */
+.tombol {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    padding: 0.5rem 1.25rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: all 150ms ease;
+}
+
+.tombol-primer {
+    color: #fff;
+    background: linear-gradient(135deg, var(--warna-primer), var(--warna-sekunder));
+    box-shadow: 0 8px 20px -5px rgba(11, 26, 11, 0.4);
+    transform: perspective(1px) translateZ(0);
+}
+
+.tombol-primer:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 12px 25px -5px rgba(11, 26, 11, 0.5);
+}
+
+.tombol-primer:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px -2px rgba(11, 26, 11, 0.4);
+}
+
+.tombol-sekunder {
+    color: var(--warna-primer);
+    background: var(--warna-primer-light);
+}
+
+.tombol-outline {
+    color: var(--warna-primer);
+    background: transparent;
+    border: 2px solid var(--warna-primer);
+}
+
+.tombol-outline:hover {
+    background: var(--warna-primer);
+    color: #fff;
+}
+
+.tombol-besar {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+}
+
+.tombol-glass {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.tombol-glass:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 100%);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* KARTU (Cards) */
+.kartu {
+    background: rgba(255, 255, 255, 0.85);
+    /* putih tapi transparan */
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow-premium);
+    overflow: hidden;
+    transition: all var(--transisi-normal);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    position: relative;
+    z-index: 1;
+}
+
+.kartu:hover {
+    transform: translateY(-8px) rotateX(2deg);
+    box-shadow: var(--shadow-xl);
+}
+
+/* FORM (Input Data) */
+.form-grup {
+    margin-bottom: 1.25rem;
+}
+
+.form-label {
+    display: block;
+    font-weight: 500;
+    color: var(--warna-abu-700);
+    margin-bottom: 0.5rem;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--warna-abu-200);
+    border-radius: 0.75rem;
+    transition: all 150ms ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--warna-primer);
+    box-shadow: 0 0 0 3px var(--warna-primer-light);
+}
+
+/* BADGE (Label kecil) */
+.badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    border-radius: 9999px;
+}
+
+.badge-primer {
+    background: var(--warna-primer-light);
+    color: var(--warna-primer);
+}
+
+/* PAGINATION (Penomoran Halaman) */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.pagination a,
+.pagination span {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--warna-abu-200);
+    border-radius: 0.5rem;
+    color: var(--warna-abu-600);
+}
+
+.pagination .active {
+    background: var(--warna-primer);
+    color: #fff;
+    border-color: var(--warna-primer);
+}

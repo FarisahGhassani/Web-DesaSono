@@ -1,0 +1,130 @@
+/*
+|--------------------------------------------------------------------------
+| Halaman Transparansi (APBDes & PerDes)
+|--------------------------------------------------------------------------
+| File ini mengatur tampilan daftar dokumen anggaran desa.
+*/
+
+.dokumen-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.dokumen-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.25rem;
+    background: #fff;
+    border-radius: 1rem;
+    border: 1px solid var(--warna-abu-200);
+    transition: all 300ms ease;
+}
+
+.dokumen-item:hover {
+    border-color: var(--warna-primer);
+    transform: translateX(8px);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.dokumen-ikon {
+    width: 48px;
+    height: 48px;
+    padding: 0.75rem;
+    background: var(--warna-primer-light);
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.dokumen-ikon svg {
+    color: var(--warna-primer);
+}
+
+.dokumen-info {
+    flex: 1;
+}
+
+.dokumen-judul {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: var(--warna-abu-900);
+}
+
+.dokumen-meta {
+    display: flex;
+    gap: 0.75rem;
+    font-size: 1.3rem;
+    color: var(--warna-abu-500);
+}
+
+.dokumen-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--warna-primer);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    transition: background 150ms ease;
+}
+
+.dokumen-link:hover {
+    background: var(--warna-primer-hover);
+    color: #fff;
+}
+
+@media (max-width: 640px) {
+    .dokumen-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dokumen-link {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* KARTU TRANSPARANSI (Folder Drive) */
+.kartu-transparansi {
+    background: white;
+    border: 1px solid var(--warna-abu-200);
+    border-radius: 1.5rem;
+    padding: 3rem;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.kartu-transparansi:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    border-color: var(--warna-primer);
+}
+
+.kartu-ikon-besar {
+    width: 100px;
+    height: 100px;
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.ikon-primer {
+    background: var(--warna-primer-light);
+    color: var(--warna-primer);
+}
+
+.ikon-sekunder {
+    background: var(--warna-sekunder-light);
+    color: var(--warna-sekunder);
+}

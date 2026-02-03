@@ -1,0 +1,46 @@
+/*
+|--------------------------------------------------------------------------
+| Halaman Tentang (About)
+|--------------------------------------------------------------------------
+| File ini mengatur tampilan profil desa dan struktur organisasi.
+*/
+
+.tim-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.tim-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    transition: all 300ms ease;
+}
+
+.tim-item:hover {
+    transform: translateY(-8px);
+}
+
+.tim-foto {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--warna-primer-light);
+}
+
+.tim-nama {
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.tim-jabatan {
+    color: var(--warna-primer);
+    font-weight: 500;
+    font-size: 1.3rem;
+}

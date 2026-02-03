@@ -1,0 +1,81 @@
+/*
+|--------------------------------------------------------------------------
+| Halaman Admin (Dashboard)
+|--------------------------------------------------------------------------
+| File ini mengatur tampilan khusus untuk pengelola website (Admin).
+| Berisi gaya untuk Sidebar (menu samping) dan layout dashboard.
+*/
+
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.admin-sidebar {
+    width: 260px;
+    background: var(--warna-abu-900);
+    color: var(--warna-abu-300);
+    padding: 1.5rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+}
+
+.admin-sidebar-brand {
+    padding: 0 1.5rem 1.5rem;
+    border-bottom: 1px solid var(--warna-abu-700);
+    margin-bottom: 1rem;
+}
+
+.admin-menu {
+    padding: 0 0.75rem;
+}
+
+.admin-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    color: var(--warna-abu-400);
+    border-radius: 0.75rem;
+    transition: all 150ms ease;
+    margin-bottom: 0.25rem;
+}
+
+.admin-menu-item:hover {
+    background: var(--warna-abu-800);
+    color: #fff;
+}
+
+.admin-menu-item.active {
+    background: var(--warna-primer);
+    color: #fff;
+}
+
+.admin-konten {
+    flex: 1;
+    margin-left: 260px;
+    padding: 2rem;
+    background: var(--warna-abu-100);
+    min-height: 100vh;
+}
+
+.admin-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 1024px) {
+    .admin-sidebar {
+        transform: translateX(-100%);
+        z-index: 500;
+    }
+
+    .admin-konten {
+        margin-left: 0;
+    }
+}

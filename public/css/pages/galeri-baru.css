@@ -1,0 +1,132 @@
+/* 
+   Galeri Baru Styles 
+   ------------------
+   Tampilan galeri tanpa card, seamless (nyambung), dengan framing gradasi.
+*/
+
+/* Container Grid Utama */
+.galeri-wrapper {
+    padding: 2rem 0;
+}
+
+.galeri-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 0;
+    /* Nyambung tanpa celah */
+    border: 1px solid var(--warna-abu-200);
+    /* Optional visual boundary */
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+/* Item Galeri Single */
+.galeri-item {
+    position: relative;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    cursor: pointer;
+    /* Framing Gradasi Awal (Tipis/Invisible) */
+    border: 3px solid transparent;
+    transition: all 0.4s ease;
+}
+
+/* Gambar Full Size */
+.galeri-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Overlay Konten (Text) */
+.galeri-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.9) 0%,
+            rgba(0, 0, 0, 0.5) 40%,
+            transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+    z-index: 2;
+}
+
+/* Tampilkan overlay saat hover atau jika 'always-visible' diinginkan */
+.galeri-item:hover .galeri-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.galeri-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Efek Framing Gradasi saat Hover */
+.galeri-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 4px solid transparent;
+    background: linear-gradient(135deg, var(--warna-aksen), var(--warna-primer)) border-box;
+    -webkit-mask:
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+    mask:
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.galeri-item:hover::after {
+    opacity: 1;
+}
+
+/* Typography di dalam Galeri */
+.galeri-kategori {
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: var(--warna-aksen);
+    margin-bottom: 0.5rem;
+}
+
+.galeri-judul {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+}
+
+.galeri-tanggal {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Mode Mobile */
+@media (max-width: 768px) {
+    .galeri-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .galeri-overlay {
+        opacity: 1;
+        transform: translateY(0);
+        background: linear-gradient(to top,
+                rgba(0, 0, 0, 0.9) 0%,
+                rgba(0, 0, 0, 0.4) 60%,
+                transparent 100%);
+    }
+}

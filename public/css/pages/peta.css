@@ -1,0 +1,227 @@
+/*
+|--------------------------------------------------------------------------
+| Halaman Peta Desa
+|--------------------------------------------------------------------------
+| File ini mengatur tampilan Google Maps di website.
+*/
+
+/* ===== KETERANGAN PETA ===== */
+.peta-keterangan {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--warna-abu-700);
+    margin-bottom: 1rem;
+    padding: 0.65rem 1.25rem;
+    background: linear-gradient(135deg, rgba(197, 160, 89, 0.12) 0%, rgba(224, 192, 120, 0.08) 100%);
+    border-radius: 2rem;
+    border-left: 3px solid #c5a059;
+}
+
+/* ===== PETA CONTAINER ===== */
+
+.peta-container {
+    position: relative;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow:
+        0 20px 40px -10px rgba(11, 26, 11, 0.2),
+        0 8px 16px -8px rgba(11, 26, 11, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+    border: 3px solid transparent;
+    background: linear-gradient(#fff, #fff) padding-box,
+        linear-gradient(135deg, #c5a059, #e0c078, #c5a059) border-box;
+}
+
+.peta-frame {
+    width: 100%;
+    height: 480px;
+    border: none;
+    display: block;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .peta-keterangan {
+        font-size: 0.95rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .peta-frame {
+        height: 350px;
+    }
+}
+
+/* Green background for administrative info card */
+.seksi-abu .kartu {
+    background:
+        radial-gradient(circle at 20% 30%, rgba(76, 90, 76, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(11, 26, 11, 0.05) 0%, transparent 40%),
+        rgba(242, 248, 242, 0.95);
+}
+
+
+.peta-info {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.5rem;
+    right: 1.5rem;
+    padding: 1.25rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border-radius: 1rem;
+    border: 1px solid var(--glass-border);
+}
+
+.peta-info h4 {
+    margin-bottom: 0.5rem;
+}
+
+.peta-info p {
+    font-size: 1.3rem;
+    color: var(--warna-abu-600);
+}
+
+/* ===== KARTU INFO PETA (Alamat, Jam Operasional, Telepon) ===== */
+.info-card-peta {
+    position: relative;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow:
+        0 10px 40px -10px rgba(11, 26, 11, 0.12),
+        0 4px 6px -2px rgba(11, 26, 11, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.info-card-peta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    border-radius: 1.5rem 1.5rem 0 0;
+    transition: all 0.3s ease;
+}
+
+.info-card-peta:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow:
+        0 25px 60px -15px rgba(11, 26, 11, 0.2),
+        0 10px 20px -5px rgba(11, 26, 11, 0.1);
+}
+
+/* Alamat Card - Gold Accent */
+.info-card-peta.alamat::before {
+    background: linear-gradient(90deg, #c5a059, #e0c078, #c5a059);
+}
+
+.info-card-peta.alamat .info-ikon {
+    background: linear-gradient(135deg, #c5a059 0%, #e0c078 100%);
+    box-shadow: 0 8px 25px -5px rgba(197, 160, 89, 0.5);
+}
+
+/* Jam Operasional Card - Green Accent */
+.info-card-peta.jam::before {
+    background: linear-gradient(135deg, #c5a059 0%, #e0c078 100%);
+    box-shadow: 0 8px 25px -5px rgba(197, 160, 89, 0.5);
+}
+
+.info-card-peta.jam .info-ikon {
+    background: linear-gradient(135deg, #c5a059 0%, #e0c078 100%);
+    box-shadow: 0 8px 25px -5px rgba(197, 160, 89, 0.5);
+}
+
+/* Telepon Card - Teal Accent */
+.info-card-peta.telepon::before {
+    background: linear-gradient(90deg, #c5a059, #e0c078, #c5a059);
+}
+
+.info-card-peta.telepon .info-ikon {
+    background: linear-gradient(135deg, #c5a059, #e0c078, #c5a059);
+    box-shadow: 0 8px 25px -5px rgba(197, 160, 89, 0.5);
+}
+
+/* Ikon Container */
+.info-ikon {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.info-card-peta:hover .info-ikon {
+    transform: scale(1.1) rotate(-5deg);
+}
+
+.info-ikon svg {
+    width: 28px;
+    height: 28px;
+    color: #fff;
+    stroke: #fff;
+}
+
+/* Konten Info */
+.info-konten {
+    flex: 1;
+}
+
+.info-judul {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--warna-abu-800);
+    margin-bottom: 0.35rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.info-detail {
+    font-size: 1.4rem;
+    color: var(--warna-abu-600);
+    line-height: 1.5;
+    margin: 0;
+}
+
+
+/* Wrapper untuk flex layout */
+.info-card-peta .flex-row {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .info-card-peta {
+        padding: 1.5rem;
+    }
+
+    .info-ikon {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+    }
+
+    .info-ikon svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .info-judul {
+        font-size: 1rem;
+    }
+
+    .info-detail {
+        font-size: 1.25rem;
+    }
+}

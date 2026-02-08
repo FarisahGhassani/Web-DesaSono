@@ -1,7 +1,7 @@
 /* 
    Galeri Baru Styles 
    ------------------
-   Tampilan galeri tanpa card, seamless (nyambung), dengan framing gradasi.
+   Tampilan galeri Grid Card dengan Rounded Corners
 */
 
 /* Container Grid Utama */
@@ -9,124 +9,380 @@
     padding: 2rem 0;
 }
 
+/* Spacing between sections */
+.galeri-wrapper .mb-12 {
+    margin-bottom: 5rem !important;
+}
+
+.galeri-wrapper .mb-12:last-child {
+    margin-bottom: 2rem !important;
+}
+
+/* Section Title Styles - Eye-catching */
+.galeri-wrapper .text-3xl {
+    font-size: 2.5rem !important;
+    font-weight: 800 !important;
+    background: linear-gradient(135deg, var(--warna-primer, #0B1A0B) 0%, #1a5a1a 50%, var(--warna-aksen, #C9A227) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+    position: relative;
+    display: inline-block;
+}
+
+.galeri-wrapper .text-3xl::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--warna-aksen, #C9A227), transparent);
+    border-radius: 2px;
+}
+
+/* Section Description - Smaller */
+.galeri-wrapper .text-lg.color-abu-600 {
+    font-size: 0.95rem !important;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
 .galeri-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 0;
-    /* Nyambung tanpa celah */
-    border: 1px solid var(--warna-abu-200);
-    /* Optional visual boundary */
-    border-radius: 1rem;
-    overflow: hidden;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 0.5rem;
 }
 
 /* Item Galeri Single */
 .galeri-item {
     position: relative;
-    aspect-ratio: 4/3;
+    aspect-ratio: 16 / 10;
+    /* Landscape ratio */
+    border-radius: 1rem;
     overflow: hidden;
     cursor: pointer;
-    /* Framing Gradasi Awal (Tipis/Invisible) */
-    border: 3px solid transparent;
-    transition: all 0.4s ease;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #f3f4f6;
+    max-height: 280px;
+    /* Same height as UMKM */
+}
+
+/* Hover Interaction: Scale Up & Shadow */
+.galeri-item:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    z-index: 10;
 }
 
 /* Gambar Full Size */
 .galeri-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Overlay Konten (Text) */
-.galeri-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top,
-            rgba(0, 0, 0, 0.9) 0%,
-            rgba(0, 0, 0, 0.5) 40%,
-            transparent 100%);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 2rem;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.4s ease;
-    z-index: 2;
-}
-
-/* Tampilkan overlay saat hover atau jika 'always-visible' diinginkan */
-.galeri-item:hover .galeri-overlay {
-    opacity: 1;
-    transform: translateY(0);
+    object-fit: contain;
+    background: #000;
+    /* Tambahkan background hitam untuk area kosong */
+    transition: transform 0.6s ease;
 }
 
 .galeri-item:hover img {
     transform: scale(1.1);
 }
 
-/* Efek Framing Gradasi saat Hover */
-.galeri-item::after {
-    content: '';
+/* Overlay Konten (Text) */
+.galeri-overlay {
     position: absolute;
-    inset: 0;
-    border: 4px solid transparent;
-    background: linear-gradient(135deg, var(--warna-aksen), var(--warna-primer)) border-box;
-    -webkit-mask:
-        linear-gradient(#fff 0 0) padding-box,
-        linear-gradient(#fff 0 0);
-    mask:
-        linear-gradient(#fff 0 0) padding-box,
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.4s ease;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.8) 0%,
+            rgba(0, 0, 0, 0.6) 50%,
+            transparent 100%);
+    padding: 1.5rem;
+    padding-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     pointer-events: none;
-    z-index: 3;
-}
-
-.galeri-item:hover::after {
-    opacity: 1;
+    transition: all 0.3s ease;
 }
 
 /* Typography di dalam Galeri */
 .galeri-kategori {
-    font-size: 1.125rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     font-weight: 600;
-    color: var(--warna-aksen);
-    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0.25rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease 0.1s;
 }
 
 .galeri-judul {
-    font-size: 1.875rem;
-    font-weight: 700;
+    font-size: 1.125rem;
+    font-weight: 600;
     color: #fff;
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
+    line-height: 1.4;
+    margin: 0;
+    /* Limit to 2 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .galeri-tanggal {
-    font-size: 1.3rem;
-    color: rgba(255, 255, 255, 0.7);
+    display: none;
+    /* Hidden per user request */
 }
 
-/* Mode Mobile */
-@media (max-width: 768px) {
+/* Hover Effects on Text */
+.galeri-item:hover .galeri-kategori,
+.galeri-item:hover .galeri-tanggal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================
+   UMKM SPECIAL STYLES
+   Shows full description on hover
+   ============================================ */
+
+.galeri-item-umkm {
+    max-height: 280px;
+    /* Slightly taller for description */
+}
+
+.galeri-overlay-umkm {
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.85) 0%,
+            rgba(0, 0, 0, 0.6) 50%,
+            transparent 100%);
+    padding: 1rem;
+    padding-top: 2.5rem;
+    padding-bottom: 1rem;
+}
+
+/* Make title always visible on UMKM items */
+.galeri-item-umkm .galeri-judul {
+    opacity: 1;
+    transform: translateY(0);
+    font-size: 0.95rem;
+    line-height: 1.3;
+    margin-bottom: 0;
+}
+
+.galeri-item-umkm .galeri-kategori {
+    opacity: 1;
+    transform: translateY(0);
+    margin-bottom: 0.2rem;
+}
+
+.galeri-deskripsi {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+    margin: 0.5rem 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.4s ease;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
+.galeri-item-umkm:hover .galeri-overlay-umkm {
+    max-height: 100%;
+    /* Expand on hover to show description */
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.95) 0%,
+            rgba(0, 0, 0, 0.85) 60%,
+            rgba(0, 0, 0, 0.5) 100%);
+}
+
+.galeri-item-umkm:hover .galeri-deskripsi {
+    max-height: 80px;
+    opacity: 1;
+}
+
+.galeri-kontak {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #25D366;
+    color: white;
+    padding: 0.4rem 0.75rem;
+    border-radius: 2rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease 0.1s;
+    pointer-events: auto;
+    text-decoration: none;
+}
+
+.galeri-kontak:hover {
+    background: #128C7E;
+    transform: scale(1.05);
+}
+
+.galeri-item-umkm:hover .galeri-kontak {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================
+   TRADISI LISAN SPECIAL STYLES
+   Shows full description on hover
+   ============================================ */
+
+.galeri-item-tradisi {
+    max-height: 280px;
+}
+
+.galeri-overlay-tradisi {
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.9) 0%,
+            rgba(0, 0, 0, 0.7) 40%,
+            transparent 70%);
+    padding: 0.75rem 1rem;
+    padding-top: 1.5rem;
+    max-height: 40%;
+    transition: all 0.4s ease;
+}
+
+.galeri-item-tradisi:hover .galeri-overlay-tradisi {
+    max-height: 100%;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.95) 0%,
+            rgba(0, 0, 0, 0.85) 60%,
+            rgba(0, 0, 0, 0.5) 100%);
+}
+
+.galeri-item-tradisi:hover .galeri-deskripsi {
+    max-height: 80px;
+    opacity: 1;
+}
+
+/* Focus Effect: Dim other items when hovering grid (Optional, creates focus effect) */
+.galeri-grid:hover .galeri-item:not(:hover) {
+    opacity: 0.7;
+    filter: blur(2px) grayscale(0.5);
+    transform: scale(0.98);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 640px) {
     .galeri-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columns on mobile */
+        gap: 0.75rem;
+    }
+
+    .galeri-judul {
+        font-size: 1rem;
+    }
+
+    .galeri-item {
+        border-radius: 0.75rem;
     }
 
     .galeri-overlay {
+        padding: 1rem;
+    }
+
+    /* Disable blur effect on mobile for performance/usability */
+    .galeri-grid:hover .galeri-item:not(:hover) {
         opacity: 1;
-        transform: translateY(0);
-        background: linear-gradient(to top,
-                rgba(0, 0, 0, 0.9) 0%,
-                rgba(0, 0, 0, 0.4) 60%,
-                transparent 100%);
+        filter: none;
+        transform: none;
+    }
+}
+
+/* ============================================
+   YOUTUBE EMBED STYLES
+   Small video embeds for UMKM section
+   ============================================ */
+
+.youtube-embed-section {
+    margin-top: 1rem;
+    padding-top: 1rem;
+}
+
+.youtube-embed-section h3 {
+    font-size: 1rem !important;
+    margin-bottom: 0.75rem !important;
+    margin-top: 0 !important;
+}
+
+.youtube-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 1.25rem;
+}
+
+.youtube-item {
+    background: #fff;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.youtube-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.youtube-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    /* 16:9 aspect ratio */
+    background: #000;
+}
+
+.youtube-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.youtube-title {
+    padding: 0.5rem 0.75rem;
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #6b7280;
+    line-height: 1.4;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .youtube-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .youtube-title {
+        font-size: 0.75rem;
+        padding: 0.4rem 0.5rem;
     }
 }

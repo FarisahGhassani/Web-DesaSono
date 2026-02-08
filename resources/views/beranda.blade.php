@@ -5,18 +5,13 @@
 
 @section('content')
     <!-- 
-                                                                                                                                                                                                                                            BAGIAN HERO 
-                                                                                                                                                                                                                                            Ini adalah bagian paling atas dari halaman beranda.
-                                                                                                                                                                                                                                            Kamu bisa mengubah teks sambutan atau judul di sini.
-                                                                                                                                                                                                                                        -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            BAGIAN HERO 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Ini adalah bagian paling atas dari halaman beranda.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Kamu bisa mengubah teks sambutan atau judul di sini.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        -->
     <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-shapes">
-            <div class="hero-shape hero-shape-1"></div>
-            <div class="hero-shape hero-shape-2"></div>
-            <div class="hero-shape hero-shape-3"></div>
-        </div>
-
+        <div class="hero-batik hero-batik-left"></div>
+        <div class="hero-batik hero-batik-right"></div>
         <div class="wadah">
             <div class="hero-main-layout">
                 <div class="hero-konten animate-slide-up">
@@ -43,6 +38,10 @@
                         </a>
                     </div>
                 </div>
+
+                <div class="hero-map-decor animate-slide-up delay-1">
+                    <img src="{{ asset('images/no bg maps.png') }}" class="hero-map-img-blur" alt="Peta Desa Dekorasi">
+                </div>
             </div>
         </div>
         <div class="hero-scroll">
@@ -56,10 +55,7 @@
         </div>
     </section>
 
-    <!-- 
-                                                                                                                                                                                                                                Tentang DESA 
-                                                                                                                                                                                                                                Berisi deskripsi tentang desa yang bisa diedit via admin.
-                                                                                                                                                                                                                            -->
+    <!--    TENTANG DESA                                                                                                                                                                                                                                                                                                                                                                                                                                                                                -->
     <section class="seksi tentang-desa-seksi" id="tentang-desa">
         <!-- Decorative Map Background -->
         <div class="tentang-map-decor">
@@ -164,16 +160,17 @@
                         <div class="statistik-label">Perempuan</div>
                     </div>
                 </div>
-
+                <div class="tentang-content">
+                    <li>*catatan terakhir pada tahun 2021</li>
+                </div>
             </div>
-        </div>
         </div>
     </section>
 
     <!-- 
-                                                                                                                                                                                                                                VISI & MISI 
-                                                                                                                                                                    Menampilkan visi utama dan poin-poin misi desa.
-                                                                                                                                                                                                                            -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    VISI & MISI 
+                                                                                                                                                                                                                                                                                                                                                                                                        Menampilkan visi utama dan poin-poin misi desa.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                -->
     <section class="seksi seksi-abu" id="visi-misi">
         <div class="wadah">
             <div class="seksi-header">
@@ -272,9 +269,9 @@
     </section>
 
     <!-- 
-                                                                                                                                                                                                                                STRUKTUR ORGANISASI 
-                                                                                                                                                                                                                            Menampilkan daftar perangkat desa dengan foto mereka.
-                                                                                                                                                                                                                        -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    STRUKTUR ORGANISASI 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                Menampilkan daftar perangkat desa dengan foto mereka.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            -->
     <section class="seksi seksi-struktur" id="struktur">
         <div class="wadah">
             <div class="seksi-header">
@@ -443,8 +440,8 @@
     </section>
 
     <!--                                                                                                                                                                         BAGIAN LAYANAN/FITUR 
-                                                                                                                                                                                                                                   Menampilkan 4 keunggulan atau layanan utama desa.
-                                                                                                                                                                                                                                        -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                       Menampilkan 4 keunggulan atau layanan utama desa.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            -->
     <section class="seksi seksi-gradient">
         <div class="wadah">
             <div class="seksi-header">
@@ -515,53 +512,146 @@
     </section>
 
     <!-- 
-                                                                                                                                                                                                                BAGIAN GALERI TERBARU 
-                                                                                                                                                                                                                Hanya muncul jika ada dokumentasi yang sudah dipublish.
-                                                                                                                                                                                                            -->
-    @if($galeriTerbaru->count() > 0)
-        <section class="seksi">
-            <div class="wadah">
-                <div class="seksi-header">
-                    <span class="seksi-label">Dokumentasi Desa</span>
-                    <h2 class="seksi-judul">Galeri Kegiatan & Keunikan</h2>
-                    <p class="seksi-deskripsi">
-                        Melihat lebih dekat keramahtamahan warga dan berbagai kegiatan yang membanggakan di Desa Sono.
-                    </p>
-                </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    PATIENT GALLERY SECTION 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    Only appears if documentation is published.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                -->
 
-                <div class="berita-grid">
-                    @foreach($galeriTerbaru as $galeri)
-                        <article class="berita-kartu">
-                            <div class="berita-gambar">
-                                @if($galeri->gambar_url)
-                                    <img src="{{ $galeri->gambar_url }}" alt="{{ $galeri->judul }}">
-                                @else
-                                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=400&fit=crop"
-                                        alt="{{ $galeri->judul }}">
-                                @endif
-                                <span class="berita-kategori">{{ $galeri->label_kategori }}</span>
+
+    <section class="seksi" id="berita-kegiatan">
+        <div class="wadah">
+            <div class="seksi-header">
+                <span class="seksi-label">WARTA DESA</span>
+                <h2 class="seksi-judul">Dokumentasi & Reportase Resmi Desa</h2>
+                <p class="seksi-deskripsi">
+                    Portal informasi resmi seputar program, kegiatan kemasyarakatan, dan warta harian Desa Sono.
+                </p>
+            </div>
+
+            <div class="galeri-slider">
+                <div class="galeri-slides">
+                    @foreach ($wartaManual as $index => $item)
+                        <div class="galeri-slide {{ $index === 0 ? 'active' : '' }}" data-title="{{ $item['title'] }}"
+                            data-narasi="{{ Str::limit(explode("\n\n", $item['narasi'])[0], 150) }}"
+                            data-url="{{ route('warta.show', $item['slug']) }}">
+                            <img src="{{ asset('images/Kegiatan Desa/' . $item['image']) }}" alt="{{ $item['title'] }}">
+
+
+                            <div class="galeri-caption">
+                                <!-- Category Metadata -->
+                                <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+                                    <span
+                                        style="background: var(--warna-primer, #0B1A0B); color: white; padding: 0.2rem 0.6rem; border-radius: 0.3rem; font-size: 0.75rem; font-weight: 700;">
+                                        {{ $item['category'] }}
+                                    </span>
+                                </div>
+                                <h3 style="font-size: 1.4rem; margin-bottom: 0.4rem;">{{ $item['title'] }}</h3>
+                                <p style="font-size: 0.95rem; line-height: 1.4; opacity: 0.9;">{{ $item['desc'] }}</p>
                             </div>
-                            <div class="berita-konten">
-                                <time class="berita-tanggal">{{ $galeri->tanggal_format }}</time>
-                                <h3 class="berita-judul">
-                                    <span>{{ $galeri->judul }}</span>
-                                </h3>
-                                <p class="berita-ringkasan">{{ $galeri->ringkasan ?: Str::limit(strip_tags($galeri->konten), 120) }}
-                                </p>
-                            </div>
-                        </article>
+
+                            <!-- Detail button at bottom-right of photo -->
+                            <button class="galeri-detail-btn"
+                                style="position: absolute; right: 1rem; bottom: 1.5rem; display: flex; align-items: center; gap: 0.35rem; padding: 0.5rem 1rem; background: #ffffff; backdrop-filter: blur(4px); color: var(--warna-primer, #0B1A0B); border: none; border-radius: 2rem; font-size: 0.85rem; font-weight: 600; cursor: pointer; z-index: 10; box-shadow: 0 2px 10px rgba(0,0,0,0.2);">
+                                <span>Detail</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                        </div>
                     @endforeach
                 </div>
 
-                <!-- Button Removed -->
+                <button class="galeri-nav prev">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <button class="galeri-nav next">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
             </div>
-        </section>
-    @endif
+
+            <!-- Narasi Dropdown Card - 1 Layer Hijau Primer -->
+            <div class="narasi-dropdown" id="narasiDropdown"
+                style="max-height: 0; overflow: hidden; opacity: 0; transition: all 0.4s ease; margin-top: 0;">
+                <!-- Card 1 layer hijau primer 50% opacity  -->
+                <div
+                    style="background: rgba(11, 26, 11, 0.5); border-radius: 0rem; padding: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.15); max-width: 950px; margin: 0 auto;">
+                    <!-- Header: Judul & Tombol X -->
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <h4 id="narasiDropdownTitle"
+                            style="margin: 0; font-size: 1.25rem; font-weight: 700; color: #ffffff; line-height: 1.3; flex: 1;">
+                        </h4>
+                        <button id="narasiDropdownClose"
+                            style="display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; padding: 0; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; color: #ffffff; cursor: pointer;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- Teks Narasi -->
+                    <p id="narasiDropdownText"
+                        style="margin: 0; font-size: 1rem; line-height: 1.85; color: white; white-space: pre-line;">
+                    </p>
+                    <!-- Link to standalone page for SEO -->
+                    <div style="margin-top: 1.5rem; text-align: right;">
+                        <a id="narasiDropdownLink" href="#" class="tombol tombol-aksen"
+                            style="font-size: 0.85rem; padding: 0.6rem 1.25rem;">
+                            Baca Berita Selengkapnya
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                style="margin-left: 0.35rem;">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- 
-                                                                                                                                                                                                                                            RINGKASAN TRANSPARANSI 
-                                                                                                                                                                                                                                            Menghubungkan ke halaman transparansi atau folder Google Drive.
-                                                                                                                                                                                                                                        -->
+                                                                                                                                                                                                                                    VIDEO PROFIL 
+                                                                                                                                                                                                                                    Video profil desa dari YouTube.
+                                                                                                                                                                                                                                -->
+    <section class="seksi" id="video-profil">
+        <div class="wadah">
+            <div class="seksi-header text-center mx-auto max-w-800">
+                <span class="seksi-label">Kenali Lebih Dekat</span>
+                <h2 class="seksi-judul">Video Profil Desa</h2>
+            </div>
+
+            <div class="video-container-wrapper">
+                <div class="video-container"
+                    style="background: linear-gradient(135deg, var(--warna-primer) 0%, #3d4a3d 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 400px;">
+                    {{-- Video akan diupdate di sini ketika sudah tersedia --}}
+                    {{-- Contoh: <iframe src="https://www.youtube.com/embed/VIDEO_ID" ...></iframe> --}}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none"
+                        stroke="rgba(255,255,255,0.5)" stroke-width="1.5">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 1.25rem; margin-top: 1.5rem; font-weight: 600;">Video
+                        Profil Segera Hadir</p>
+                    <p style="color: rgba(255,255,255,0.5); font-size: 1rem; margin-top: 0.5rem;">Video sedang dalam proses
+                        produksi</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--                                                                                                                                                                                                                                                          RINGKASAN TRANSPARANSI 
+
+                                                                                                                                                                                                                                    // Buatkan section untuk embed video profile dari youtube                                                                                                                                                                                                                                                                Menghubungkan ke halaman transparansi atau folder Google Drive.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                             -->
     <section class="seksi seksi-abu">
         <div class="wadah">
             <div class="seksi-header text-center mx-auto max-w-800">
@@ -585,28 +675,315 @@
     </section>
 
     <!-- 
-                                                                                                                                                                                                                                            BAGIAN KONTAK / CTA 
-                                                                                                                                                                                                                                            Mengajak pengunjung untuk menghubungi desa.
-                                                                                                                                                                                                                                        -->
-    <section class="seksi bg-cta text-white">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 BAGIAN KONTAK / CTA 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Mengajak pengunjung untuk menghubungi desa.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                             -->
+    <section class="seksi bg-cta text-white" id="faq">
         <div class="wadah" style="position: relative; z-index: 2;">
-            <div class="text-center max-w-800 mx-auto glass-card">
-                <h2 class="seksi-judul text-white">Ada Pertanyaan?</h2>
-                <p class="teks-cta">
-                    Jangan ragu untuk menghubungi kantor desa kami. Kami siap membantu memberikan informasi yang Anda
-                    butuhkan.
-                </p>
-                <div class="flex justify-center gap-4 flex-wrap">
-                    <a href="{{ route('peta') }}" class="tombol tombol-glass tombol-besar">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2">
-                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                            <circle cx="12" cy="10" r="3" />
+            <div class="max-w-800 mx-auto glass-card">
+                <div class="text-center mb-10">
+                    <h2 class="seksi-judul text-white">Pertanyaan Umum</h2>
+                    <p class="teks-cta">
+                        Informasi seputar Desa Sono yang sering ditanyakan.
+                    </p>
+                </div>
+
+                <div class="faq-accordion">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Apakah website ini sudah selesai?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-content">
+                                Website ini akan dikembangkan lagi dan masih dalam tahap pengembangan.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Apa tujuan dibuatnya website ini?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-content">
+                                Tujuan dibuatnya website ini adalah sebagai media informasi resmi Desa Sono yang dapat
+                                diakses oleh masyarakat luas.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Bagaimana cara mengurus persuratan?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-content">
+                                Silahkan datang langsung ke kantor Balai Desa Sono pada jam kerja (Senin - Jumat, 08.00 -
+                                15.00) dengan membawa KTP dan KK asli serta fotokopi.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Bagaimana cara menghubungi Perangkat Desa?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-content">
+                                Anda dapat menghubungi perangkat desa melalui nomor WhatsApp yang tersedia di website ini
+                                atau datang langsung ke kantor desa.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Apakah masyarakat dapat mengirim saran atau masukan lewat website?</span>
+                            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-content">
+                                Untuk saat ini, masukan hanya dapat disampaikan melalui kontak desa yang tersedia karena
+                                website masih dalam tahap pengembangan.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex justify-center flex-col items-center">
+                    <p class="teks-cta mb-4">Masih punya pertanyaan lain?</p>
+                    <a href="https://wa.me/6281330949672" target="_blank" rel="noopener"
+                        class="tombol tombol-primer tombol-besar"
+                        style="background: #25D366; color: white; border-color: #25D366; display: inline-flex; align-items: center; gap: 0.5rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                            </path>
                         </svg>
-                        Lihat Lokasi Kantor Desa
+                        Hubungi via WhatsApp
                     </a>
                 </div>
             </div>
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- GALERI SLIDER ---
+            const slides = document.querySelectorAll('.galeri-slide');
+            const prevBtn = document.querySelector('.galeri-nav.prev');
+            const nextBtn = document.querySelector('.galeri-nav.next');
+            let currentSlide = 0;
+            let slideInterval;
+            const totalSlides = slides.length;
+            let isSliderPaused = false;
+
+            function updateSlides() {
+                if (totalSlides === 0) return;
+                slides.forEach(slide => {
+                    slide.classList.remove('active', 'prev', 'next');
+                });
+
+                // Active
+                slides[currentSlide].classList.add('active');
+
+                // Prev
+                const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+                slides[prevIndex].classList.add('prev');
+
+                // Next
+                const nextIndex = (currentSlide + 1) % totalSlides;
+                slides[nextIndex].classList.add('next');
+            }
+
+            function nextSlide() {
+                if (isSliderPaused) return;
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlides();
+            }
+
+            function prevSlide() {
+                if (isSliderPaused) return;
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateSlides();
+            }
+
+            function resetInterval() {
+                clearInterval(slideInterval);
+                if (totalSlides > 1 && !isSliderPaused) {
+                    slideInterval = setInterval(nextSlide, 5000);
+                }
+            }
+
+            function pauseSlider() {
+                isSliderPaused = true;
+                clearInterval(slideInterval);
+            }
+
+            function resumeSlider() {
+                isSliderPaused = false;
+                resetInterval();
+            }
+
+            if (prevBtn && nextBtn && totalSlides > 0) {
+                prevBtn.addEventListener('click', () => {
+                    closeDropdown(); // Auto close popup saat ganti slide
+                    prevSlide();
+                    resetInterval();
+                });
+                nextBtn.addEventListener('click', () => {
+                    closeDropdown(); // Auto close popup saat ganti slide
+                    nextSlide();
+                    resetInterval();
+                });
+
+                // Initial State
+                updateSlides();
+                resetInterval();
+            }
+
+            // --- FAQ ACCORDION ---
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                if (question) {
+                    question.addEventListener('click', () => {
+                        const isActive = item.classList.contains('active');
+
+                        // Close all other items
+                        faqItems.forEach(otherItem => {
+                            if (otherItem !== item) {
+                                otherItem.classList.remove('active');
+                                const answer = otherItem.querySelector('.faq-answer');
+                                if (answer) answer.style.maxHeight = null;
+                            }
+                        });
+
+                        // Toggle current item
+                        if (!isActive) {
+                            item.classList.add('active');
+                            const answer = item.querySelector('.faq-answer');
+                            if (answer) answer.style.maxHeight = answer.scrollHeight + "px";
+                        } else {
+                            item.classList.remove('active');
+                            const answer = item.querySelector('.faq-answer');
+                            if (answer) answer.style.maxHeight = null;
+                        }
+                    });
+                }
+            });
+
+            // --- NARASI DROPDOWN (ACCORDION STYLE) ---
+            const narasiDropdown = document.getElementById('narasiDropdown');
+            const narasiDropdownClose = document.getElementById('narasiDropdownClose');
+            const narasiDropdownTitle = document.getElementById('narasiDropdownTitle');
+            const narasiDropdownText = document.getElementById('narasiDropdownText');
+            const narasiDropdownLink = document.getElementById('narasiDropdownLink');
+
+            let isDropdownOpen = false;
+
+            function openDropdown(title, narasi, url) {
+                if (!narasiDropdown) return;
+
+                if (narasiDropdownTitle) narasiDropdownTitle.textContent = title;
+                if (narasiDropdownText) narasiDropdownText.textContent = narasi;
+                if (narasiDropdownLink) narasiDropdownLink.href = url;
+
+                // Pause slider when dropdown is open
+                pauseSlider();
+
+                // Apply open styles
+                narasiDropdown.style.maxHeight = '600px';
+                narasiDropdown.style.opacity = '1';
+                narasiDropdown.style.marginTop = '1.5rem';
+                isDropdownOpen = true;
+
+                // Scroll to show dropdown
+                setTimeout(() => {
+                    narasiDropdown.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 150);
+            }
+
+            function closeDropdown() {
+                if (!narasiDropdown) return;
+
+                // Apply close styles
+                narasiDropdown.style.maxHeight = '0';
+                narasiDropdown.style.opacity = '0';
+                narasiDropdown.style.marginTop = '0';
+                isDropdownOpen = false;
+
+                // Resume slider when dropdown is closed
+                resumeSlider();
+            }
+
+            // Toggle dropdown on Detail button click
+            document.addEventListener('click', function (e) {
+                const detailBtn = e.target.closest('.galeri-detail-btn');
+                if (detailBtn) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    // Get data from parent slide
+                    const slide = detailBtn.closest('.galeri-slide');
+                    if (slide) {
+                        const title = slide.getAttribute('data-title') || '';
+                        const narasi = slide.getAttribute('data-narasi') || '';
+                        const url = slide.getAttribute('data-url') || '#';
+
+                        if (isDropdownOpen) {
+                            // Just update content without closing/opening
+                            if (narasiDropdownTitle) narasiDropdownTitle.textContent = title;
+                            if (narasiDropdownText) narasiDropdownText.textContent = narasi;
+                            if (narasiDropdownLink) narasiDropdownLink.href = url;
+                        } else {
+                            openDropdown(title, narasi, url);
+                        }
+                    }
+                }
+            });
+
+            // Close button
+            if (narasiDropdownClose) {
+                narasiDropdownClose.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    closeDropdown();
+                });
+            }
+        });
+    </script>
+@endpush

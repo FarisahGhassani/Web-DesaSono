@@ -5,13 +5,13 @@
 
 @section('content')
     <!-- 
-                                                                            HEADER HALAMAN PETA 
-                                                                            Memberikan konteks lokasi desa kepada pengunjung.
-                                                                        -->
+                                                                                        HEADER HALAMAN PETA 
+                                                                                        Memberikan konteks lokasi desa kepada pengunjung.
+                                                                                    -->
     <!-- 
-                                                                            HEADER HALAMAN PETA 
-                                                                            Memberikan konteks lokasi desa kepada pengunjung.
-                                                                        -->
+                                                                                        HEADER HALAMAN PETA 
+                                                                                        Memberikan konteks lokasi desa kepada pengunjung.
+                                                                                    -->
     <header class="page-header">
         <div class="floating-accent"></div>
         <div class="floating-accent"></div>
@@ -27,13 +27,15 @@
     </header>
 
     <!-- 
-                                                                            BAGIAN PETA (GOOGLE MAPS) 
-                                                                            Menampilkan frame peta interaktif.
-                                                                        -->
+                                                                                        BAGIAN PETA (GOOGLE MAPS) 
+                                                                                        Menampilkan frame peta interaktif.
+                                                                                    -->
     <section class="seksi">
         <div class="wadah">
             <!-- Keterangan Peta -->
-            <h4 class="info-judul">Lokasi Kantor Desa</h4>
+            <div class="mb-8 border-t pt-12">
+                <h2 class="text-3xl fw-700 text-dark mb-2">Lokasi Kantor Desa</h2>
+            </div>
             <p class="peta-keterangan">Klik peta untuk mendapatkan petunjuk arah</p>
 
             <!-- Peta Container -->
@@ -99,6 +101,18 @@
                             <p class="info-detail">
                                 {{ $infoDesa['telepon'] ?? '-' }}
                             </p>
+                            @if (!empty($infoDesa['telepon']))
+                                @php
+                                    $telepon = preg_replace('/[^0-9]/', '', $infoDesa['telepon']);
+                                    if (substr($telepon, 0, 1) === '0') {
+                                        $telepon = '62' . substr($telepon, 1);
+                                    }
+                                @endphp
+                                <a href="https://wa.me/{{ $telepon }}" target="_blank"
+                                    style="display: inline-block; margin-top: 4px; color: #25D366; font-weight: 500; text-decoration: none;">
+                                    Hubungi via WhatsApp
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -107,9 +121,9 @@
     </section>
 
     <!-- 
-                                                                            INFO ADMINISTRATIF 
-                                                                            Pembagian wilayah kerja desa secara administratif.
-                                                                        -->
+                                                                                        INFO ADMINISTRATIF 
+                                                                                        Pembagian wilayah kerja desa secara administratif.
+                                                                                    -->
     <section class="seksi seksi-abu">
         <div class="wadah wadah-sempit">
             <div class="seksi-header">

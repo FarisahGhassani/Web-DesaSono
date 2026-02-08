@@ -40,6 +40,7 @@ class BerandaController extends Controller
         return view('beranda', [
             'galeriTerbaru' => $galeriTerbaru,
             'perangkatDesa' => $perangkatDesa,
+            'wartaManual' => config('warta'),
         ]);
     }
 }

@@ -1,197 +1,200 @@
 @extends('layouts.app')
 
 @section('title', 'Galeri Desa')
-@section('description', 'Dokumentasi kegiatan desa, potensi desa, dan keunikan yang ada di Desa Sono.')
+@section('description', 'Dokumentasi kegiatan, potensi, dan UMKM desa kami.')
+
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/pages/galeri-baru.css') }}">
+@endpush
 
 @section('content')
-    <!-- Page Header -->
+    <!-- 
+                                    HEADER HALAMAN GALERI 
+                                -->
     <header class="page-header">
         <div class="floating-accent"></div>
         <div class="floating-accent"></div>
         <div class="wadah">
             <div class="page-header-content">
-                <span class="page-header-label">Dokumentasi Desa</span>
-                <h1 class="page-header-title">Galeri Desa Sono</h1>
+                <span class="page-header-label">Dokumentasi</span>
+                <h1 class="page-header-title">Galeri Desa</h1>
                 <p class="page-header-desc">
-                    Kumpulan dokumentasi berbagai kegiatan warga dan keunikan yang menjadi ciri khas Desa Sono.
+                    Potret kegiatan, potensi, dan perkembangan desa yang kami abadikan sebagai jejak digital transparansi.
                 </p>
             </div>
         </div>
     </header>
 
-    @push('styles')
-        <style>
-            /* Styling untuk galeri */
-            .galeri-section {
-                margin-bottom: 5rem;
-                padding: 0 1.5rem;
-            }
+    <!-- 
+                                    GALERI KEGIATAN DESA 
+                                    Data diambil dari config/galeri-desa.php
+                                -->
+    @php
+        $kegiatan = config('galeri-desa.kegiatan');
+        $umkm = config('galeri-desa.umkm');
+        $potensi = config('galeri-desa.potensi');
+        $tradisi = config('galeri-desa.tradisi');
+    @endphp
 
-            .galeri-section:last-child {
-                margin-bottom: 0;
-            }
-
-            .judul-kategori {
-                font-size: 2.5rem;
-                font-weight: 800;
-                margin-bottom: 1rem;
-                color: var(--warna-teks-utama);
-                position: relative;
-                padding-left: 1rem;
-                border-left: 5px solid var(--warna-primer);
-            }
-
-            .deskripsi-kategori {
-                font-size: 1.5rem;
-                color: var(--warna-abu-600);
-                margin-bottom: 2.5rem;
-                padding-left: 1rem;
-            }
-
-            /* Container untuk Google Photos embed */
-            .google-photos-embed {
-                width: 100%;
-                border-radius: 1.5rem;
-                overflow: hidden;
-                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-                background: var(--warna-putih);
-                min-height: 600px;
-                position: relative;
-            }
-
-            .google-photos-embed iframe {
-                width: 100%;
-                height: 600px;
-                border: none;
-                display: block;
-            }
-
-            /* Info helper */
-            .galeri-info {
-                background: linear-gradient(135deg, #f0f7ed, #e8f5e0);
-                border-left: 4px solid var(--warna-primer);
-                padding: 1.5rem 2rem;
-                border-radius: 1rem;
-                margin-bottom: 3rem;
-            }
-
-            .galeri-info h3 {
-                font-size: 1.6rem;
-                color: var(--warna-primer-dark);
-                margin-bottom: 0.5rem;
-                font-weight: 700;
-            }
-
-            .galeri-info p {
-                font-size: 1.4rem;
-                color: var(--warna-abu-700);
-                margin: 0;
-                line-height: 1.7;
-            }
-
-            .galeri-info code {
-                background: var(--warna-putih);
-                padding: 0.2rem 0.6rem;
-                border-radius: 0.4rem;
-                font-family: 'Courier New', monospace;
-                color: var(--warna-primer-dark);
-                font-size: 1.3rem;
-            }
-
-            /* Responsive */
-            @media (max-width: 768px) {
-                .judul-kategori {
-                    font-size: 2rem;
-                }
-
-                .google-photos-embed iframe {
-                    height: 400px;
-                }
-            }
-        </style>
-    @endpush
-
-    <!-- Galeri Content -->
-    <section class="seksi">
+    <section class="seksi galeri-wrapper">
         <div class="wadah">
 
-            {{--
-            ============================================================
-            PANDUAN SETUP (BACA INI DULU!)
-            ============================================================
+            <!-- KEGIATAN DESA -->
+            @if($kegiatan['enabled'])
+                <div class="mb-12">
+                    <div class="mb-8">
+                        <h2 class="text-3xl fw-700 text-dark mb-2">{{ $kegiatan['judul'] }}</h2>
+                        <p class="text-lg color-abu-600">{{ $kegiatan['deskripsi'] }}</p>
+                    </div>
 
-            CARA SETUP GALERI GOOGLE PHOTOS:
-
-            1. Buka Google Photos (photos.google.com)
-            2. Buat album baru, beri nama "Kegiatan Desa Sono"
-            3. Upload semua foto kegiatan ke album tersebut
-            4. Klik tombol Share (👥) > Create link > Copy link
-            5. Ganti LINK_ALBUM_KEGIATAN_DESA di baris 117 dengan link yang Anda copy
-
-            6. Ulangi langkah 2-5 untuk "UMKM Desa Sono"
-            7. Ganti LINK_ALBUM_UMKM_DESA di baris 133 dengan link album UMKM
-
-            SETELAH SETUP:
-            - Upload foto baru ke album Google Photos = Otomatis muncul di website
-            - Hapus foto dari album = Otomatis hilang dari website
-            - TIDAK PERLU edit file ini lagi!
-
-            Simpan file ini, dan selamanya tinggal manage foto di Google Photos saja.
-            ============================================================
-            --}}
-
-            {{-- Info untuk pengelola --}}
-            @if(config('app.env') === 'local')
-                <div class="galeri-info">
-                    <h3>📸 Cara Mengelola Galeri</h3>
-                    <p>
-                        Galeri ini terhubung dengan <strong>Google Photos</strong>.
-                        Untuk menambah/menghapus foto, cukup upload atau hapus foto di album Google Photos Anda.
-                        Foto akan otomatis update di website tanpa perlu edit code.
-                        <br><br>
-                        <strong>Setup pertama kali:</strong> Edit file ini sekali untuk masukkan link album Google Photos Anda
-                        (lihat komentar di code).
-                    </p>
+                    @if(!empty($kegiatan['google_photos_url']))
+                        <!-- Embed Google Photos / Link -->
+                        <div class="bg-abu-100 p-8 rounded-2xl text-center">
+                            <p class="mb-4">Lihat album lengkap di Google Photos:</p>
+                            <a href="{{ $kegiatan['google_photos_url'] }}" target="_blank" class="tombol tombol-primer">
+                                Buka Album Foto
+                            </a>
+                        </div>
+                    @elseif(!empty($kegiatan['foto_manual']))
+                        <div class="galeri-grid">
+                            @foreach($kegiatan['foto_manual'] as $foto)
+                                <div class="galeri-item">
+                                    <img src="{{ asset('images/' . $kegiatan['folder'] . '/' . $foto['file']) }}"
+                                        alt="{{ $foto['judul'] }}" loading="lazy">
+                                    <div class="galeri-overlay">
+                                        <span class="galeri-kategori">Kegiatan</span>
+                                        <h3 class="galeri-judul">{{ $foto['judul'] }}</h3>
+                                        @if(isset($foto['tanggal']) && $foto['tanggal'])
+                                            <span class="galeri-tanggal">{{ $foto['tanggal'] }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <div class="text-center p-12 border rounded-2xl bg-abu-50">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5" class="mx-auto mb-4 color-abu-400">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                <polyline points="21 15 16 10 5 21"></polyline>
+                            </svg>
+                            <p class="fw-600 color-abu-500">Belum ada foto kegiatan.</p>
+                        </div>
+                    @endif
                 </div>
             @endif
 
-            {{-- GALERI KEGIATAN DESA --}}
-            <div class="galeri-section">
-                <h2 class="judul-kategori">KEGIATAN DESA</h2>
-                <p class="deskripsi-kategori">Dokumentasi berbagai kegiatan dan acara yang dilakukan di desa</p>
+            <!-- UMKM DESA -->
+            @if($umkm['enabled'])
+                <div class="mb-12">
+                    <div class="mb-8 border-t pt-12">
+                        <h2 class="text-3xl fw-700 text-dark mb-2">UMKM</h2>
+                        <p class="text-lg color-abu-600">{{ $umkm['deskripsi'] }}</p>
+                    </div>
 
-                <div class="google-photos-embed">
-                    {{--
-                    GANTI "LINK_ALBUM_KEGIATAN_DESA" dengan link Google Photos album Anda
-                    Contoh: https://photos.app.goo.gl/abcd1234567890
-                    --}}
-                    <iframe src="https://photos.app.goo.gl/LINK_ALBUM_KEGIATAN_DESA" frameborder="0" allowfullscreen>
-                    </iframe>
+                    @if(!empty($umkm['foto_manual']))
+                        <div class="galeri-grid">
+                            @foreach($umkm['foto_manual'] as $foto)
+                                <div class="galeri-item galeri-item-umkm">
+                                    <img src="{{ asset('images/' . $umkm['folder'] . '/' . $foto['file']) }}" alt="{{ $foto['judul'] }}"
+                                        loading="lazy">
+                                    <div class="galeri-overlay galeri-overlay-umkm">
+                                        <span class="galeri-kategori">UMKM</span>
+                                        <h3 class="galeri-judul">{{ $foto['judul'] }}</h3>
+                                        @if(isset($foto['deskripsi']) && $foto['deskripsi'])
+                                            <p class="galeri-deskripsi">{{ $foto['deskripsi'] }}</p>
+                                        @endif
+                                        @if(isset($foto['kontak']) && $foto['kontak'])
+                                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $foto['kontak']) }}" target="_blank"
+                                                class="galeri-kontak">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                                    fill="currentColor">
+                                                    <path
+                                                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                                                </svg>
+                                                {{ $foto['kontak'] }}
+                                            </a>
+                                        @endif
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <div class="text-center p-12 border rounded-2xl bg-abu-50">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5" class="mx-auto mb-4 color-abu-400">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                <polyline points="21 15 16 10 5 21"></polyline>
+                            </svg>
+                            <p class="fw-600 color-abu-500">Belum ada foto UMKM.</p>
+                        </div>
+                    @endif
+
+                    {{-- YouTube Video Embed --}}
+                    @if(!empty($umkm['youtube_videos']))
+                        <div class="youtube-embed-section">
+                            <h3 class="text-xl fw-600 text-dark mb-4 mt-8">Video UMKM</h3>
+                            <div class="youtube-grid">
+                                @foreach($umkm['youtube_videos'] as $video)
+                                    <div class="youtube-item">
+                                        <div class="youtube-wrapper">
+                                            <iframe src="https://www.youtube.com/embed/{{ $video['id'] }}"
+                                                title="{{ $video['judul'] ?? 'Video UMKM' }}" frameborder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowfullscreen>
+                                            </iframe>
+                                        </div>
+                                        @if(isset($video['judul']))
+                                            <p class="youtube-title">{{ $video['judul'] }}</p>
+                                        @endif
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @endif
                 </div>
-            </div>
+            @endif
 
-            {{-- GALERI UMKM DESA --}}
-            <div class="galeri-section">
-                <h2 class="judul-kategori">UMKM DESA</h2>
-                <p class="deskripsi-kategori">Produk dan hasil karya UMKM warga desa</p>
 
-                <div class="google-photos-embed">
-                    {{--
-                    GANTI "LINK_ALBUM_UMKM_DESA" dengan link Google Photos album Anda
-                    Contoh: https://photos.app.goo.gl/xyz0987654321
-                    --}}
-                    <iframe src="https://photos.app.goo.gl/LINK_ALBUM_UMKM_DESA" frameborder="0" allowfullscreen>
-                    </iframe>
+            <!-- TRADISI LISAN -->
+            @if($tradisi['enabled'])
+                <div class="mb-12">
+                    <div class="mb-8 border-t pt-12">
+                        <h2 class="text-3xl fw-700 text-dark mb-2">{{ $tradisi['judul'] }}</h2>
+                        <p class="text-lg color-abu-600">{{ $tradisi['deskripsi'] }}</p>
+                    </div>
+
+                    @if(!empty($tradisi['foto_manual']))
+                        <div class="galeri-grid">
+                            @foreach($tradisi['foto_manual'] as $foto)
+                                <div class="galeri-item galeri-item-tradisi">
+                                    <img src="{{ asset('images/' . $tradisi['folder'] . '/' . $foto['file']) }}"
+                                        alt="{{ $foto['judul'] }}" loading="lazy">
+                                    <div class="galeri-overlay galeri-overlay-tradisi">
+                                        <span class="galeri-kategori">Tradisi Lisan</span>
+                                        <h3 class="galeri-judul">{{ $foto['judul'] }}</h3>
+                                        @if(isset($foto['deskripsi']) && $foto['deskripsi'])
+                                            <p class="galeri-deskripsi">{{ $foto['deskripsi'] }}</p>
+                                        @endif
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <div class="text-center p-12 border rounded-2xl bg-abu-50">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5" class="mx-auto mb-4 color-abu-400">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                                <polyline points="21 15 16 10 5 21"></polyline>
+                            </svg>
+                            <p class="fw-600 color-abu-500">Belum ada foto tradisi lisan.</p>
+                        </div>
+                    @endif
                 </div>
-            </div>
-
-            {{--
-            CATATAN PENTING:
-            - Link Google Photos harus dari album yang sudah di-share (public)
-            - Setelah setup link, Anda TIDAK PERLU edit file ini lagi
-            - Untuk update galeri: Upload/hapus foto langsung di Google Photos
-            - Foto akan otomatis sinkron ke website
-            --}}
+            @endif
 
         </div>
     </section>

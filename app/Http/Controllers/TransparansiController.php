@@ -23,10 +23,12 @@ class TransparansiController extends Controller
     {
         $linkApbdes = \App\Models\InformasiDesa::ambil('folder_google_drive_apbdes', '#');
         $linkPerdes = \App\Models\InformasiDesa::ambil('folder_google_drive_perdes', '#');
+        $linkLainnya = 'https://drive.google.com/drive/folders/1PNve-9fgSDVAelsSlOtwUEBJiLZEOKqY?usp=sharing';
 
         return view('transparansi.index', [
             'linkApbdes' => $linkApbdes,
             'linkPerdes' => $linkPerdes,
+            'linkLainnya' => $linkLainnya,
         ]);
     }
 }

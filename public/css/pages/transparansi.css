@@ -94,29 +94,59 @@
 .kartu-transparansi {
     background: white;
     border: 1px solid var(--warna-abu-200);
-    border-radius: 1.5rem;
-    padding: 3rem;
-    text-align: center;
+    border-radius: 1.25rem;
+    padding: 2.5rem;
+    text-align: left;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.kartu-transparansi::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--warna-primer), var(--warna-sekunder));
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .kartu-transparansi:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-    border-color: var(--warna-primer);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px -5px rgb(0 0 0 / 0.1);
+    border-color: var(--warna-primer-light);
 }
 
-.kartu-ikon-besar {
-    width: 100px;
-    height: 100px;
-    border-radius: 2rem;
+.kartu-transparansi:hover::before {
+    opacity: 1;
+}
+
+.kartu-header {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.kartu-ikon {
+    width: 56px;
+    height: 56px;
+    border-radius: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 2rem;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.kartu-transparansi:hover .kartu-ikon {
+    transform: scale(1.1) rotate(5deg);
 }
 
 .ikon-primer {
@@ -127,4 +157,64 @@
 .ikon-sekunder {
     background: var(--warna-sekunder-light);
     color: var(--warna-sekunder);
+}
+
+.informasi-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.info-badge {
+    font-size: 0.85rem;
+    background: var(--warna-abu-100, #f3f4f6);
+    color: var(--warna-abu-700, #374151);
+    padding: 0.35rem 0.85rem;
+    border-radius: 2rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.info-badge svg {
+    width: 14px;
+    height: 14px;
+    opacity: 0.6;
+}
+
+/* Info Box (Footer Section) */
+.info-box-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.info-box {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid var(--warna-abu-200);
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.info-box-icon {
+    color: var(--warna-primer);
+    background: var(--warna-primer-light);
+    width: 40px;
+    height: 40px;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .info-box-wrapper {
+        grid-template-columns: 1fr;
+    }
 }

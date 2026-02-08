@@ -1,0 +1,537 @@
+/* ============================================
+   GALERI SLIDER - Container utama slider
+   ============================================ */
+
+.galeri-slider {
+    position: relative;
+    width: 100%;
+    /* Lebar penuh */
+    margin: 2rem auto 0;
+    /* Jarak atas 2rem */
+    border-radius: 1.5rem;
+    /* Sudut bulat */
+    overflow: hidden;
+    /* Potong konten di luar batas */
+    aspect-ratio: 16/12;
+    /* Diubah menjadi 16/12 agar lebih tinggi ke bawah */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    /* Bayangan */
+    background: #f0f0f0;
+    /* Warna background saat loading */
+}
+
+/* Desktop - rasio lebih lebar */
+@media (min-width: 1024px) {
+    .galeri-slider {
+        aspect-ratio: 21/9;
+        /* Diubah kembali menjadi 21/9 sesuai permintaan */
+    }
+}
+
+/* ============================================
+   SLIDES - Wrapper untuk semua slide
+   ============================================ */
+
+.galeri-slides {
+    position: relative;
+    width: 100%;
+    /* Lebar penuh */
+    height: 100%;
+    /* Tinggi penuh */
+}
+
+/* ============================================
+   SLIDE - Setiap item slide
+   ============================================ */
+
+.galeri-slide {
+    position: absolute;
+    inset: 0;
+    /* Isi seluruh container */
+    opacity: 0;
+    /* Awalnya tersembunyi */
+    transition: opacity 0.6s ease-in-out;
+    /* Animasi fade 0.6 detik */
+    visibility: hidden;
+    z-index: 0;
+}
+
+.galeri-slide.active {
+    opacity: 1;
+    /* Tampilkan slide aktif */
+    visibility: visible;
+    z-index: 1;
+    /* Paling depan */
+}
+
+.galeri-slide img {
+    width: 100%;
+    /* Gambar lebar penuh */
+    height: 100%;
+    /* Gambar tinggi penuh */
+    object-fit: contain;
+    /* Ubah ke contain agar gambar hasil crop user terlihat utuh */
+    background: #000;
+}
+
+/* ============================================
+   CAPTION OVERLAY - Card hijau di atas gambar
+   ============================================ */
+
+.galeri-caption {
+    position: absolute;
+    top: 0;
+    /* Jarak dari atas */
+    bottom: 0;
+    /* Jarak dari bawah */
+    left: 0;
+    /* Jarak dari kiri */
+    right: 0;
+    /* Jarak dari kanan */
+    background: rgba(11, 26, 11, 0.5);
+    /* Hijau primer 50% opacity */
+    display: flex;
+    flex-direction: column;
+    /* Konten vertikal */
+    justify-content: flex-end;
+    /* Konten di bawah */
+    padding: 2rem;
+    /* Jarak dalam */
+    border-radius: 0;
+    /* Sudut (0 = kotak) */
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.3);
+    /* Bayangan dalam */
+    opacity: 0;
+    /* Awalnya tersembunyi */
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+    /* Animasi muncul */
+}
+
+.galeri-slide.active .galeri-caption {
+    transform: translateY(0);
+    opacity: 1;
+    /* Muncul saat slide aktif */
+}
+
+/* ============================================
+   CAPTION TEXT - Judul & deskripsi
+   ============================================ */
+
+.galeri-caption-text {
+    flex: 1;
+    /* Isi ruang tersedia */
+}
+
+.galeri-caption h3 {
+    margin: 0 0 0.25rem;
+    /* Jarak bawah */
+    font-size: 1.25rem;
+    /* Ukuran font judul */
+    font-weight: 700;
+    /* Tebal */
+    color: #fff;
+    /* Warna putih */
+}
+
+.galeri-caption p {
+    margin: 0;
+    font-size: 0.9rem;
+    /* Ukuran font deskripsi */
+    color: rgba(255, 255, 255, 0.8);
+    /* Putih 80% opacity */
+}
+
+/* ============================================
+   NAVIGATION - Tombol prev/next
+   ============================================ */
+
+.galeri-nav {
+    position: absolute;
+    top: 50%;
+    /* Tengah vertikal */
+    transform: translateY(-50%) scale(0.9);
+    width: 56px;
+    /* Lebar tombol */
+    height: 56px;
+    /* Tinggi tombol */
+    border-radius: 50%;
+    /* Bulat */
+    background: rgba(255, 255, 255, 0.9);
+    /* Putih 90% opacity */
+    backdrop-filter: blur(4px);
+    /* Efek blur */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    /* Bayangan */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    color: var(--warna-abu-800);
+    opacity: 0;
+    /* Tersembunyi, muncul saat hover */
+}
+
+.galeri-slider:hover .galeri-nav {
+    opacity: 1;
+    /* Muncul saat slider di-hover */
+    transform: translateY(-50%) scale(1);
+}
+
+.galeri-nav:hover {
+    background: #fff;
+    color: var(--warna-primer);
+    transform: translateY(-50%) scale(1.1);
+    /* Membesar saat hover */
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+}
+
+.galeri-nav:active {
+    transform: translateY(-50%) scale(0.95);
+    /* Mengecil saat diklik */
+}
+
+.galeri-nav.prev {
+    left: 1.5rem;
+    /* Posisi tombol prev */
+}
+
+.galeri-nav.next {
+    right: 1.5rem;
+    /* Posisi tombol next */
+}
+
+/* ============================================
+   DETAIL BUTTON - Tombol kuning "Detail"
+   ============================================ */
+
+.galeri-detail-btn {
+    position: absolute;
+    right: 1.5rem;
+    /* Jarak dari kanan */
+    bottom: 1rem;
+    /* Jarak dari bawah */
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    /* Jarak icon & teks */
+    padding: 0.5rem 0;
+    background: transparent;
+    color: #fbbf24;
+    /* Warna kuning */
+    border: none;
+    font-size: 0.95rem;
+    /* Ukuran font */
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.galeri-detail-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.galeri-detail-btn:hover {
+    color: #fcd34d;
+    /* Lebih terang saat hover */
+}
+
+.galeri-detail-btn:hover svg {
+    transform: translateY(2px);
+    /* Icon turun saat hover */
+}
+
+/* ============================================
+   NARASI DROPDOWN - Card dropdown narasi
+   ============================================ */
+
+.narasi-dropdown {
+    max-height: 0;
+    /* Tertutup */
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+    margin-top: 0;
+}
+
+.narasi-dropdown.active {
+    max-height: 600px;
+    /* Tinggi maksimal saat buka */
+    opacity: 1;
+    margin-top: 1.5rem;
+    /* Jarak atas */
+}
+
+/* Card utama - 1 layer hijau primer */
+.narasi-dropdown-card {
+    background: var(--warna-primer, #0B1A0B);
+    /* Hijau primer */
+    border-radius: 1rem;
+    /* Sudut bulat */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    /* Bayangan */
+    overflow: hidden;
+    padding: 1.5rem;
+    /* Padding dalam */
+}
+
+/* Header - judul & tombol tutup */
+.narasi-dropdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    /* Jarak ke isi */
+}
+
+/* Judul narasi */
+.narasi-dropdown-title {
+    margin: 0;
+    font-size: 1.15rem;
+    /* Ukuran judul */
+    font-weight: 700;
+    color: #ffffff;
+    /* Teks putih */
+    line-height: 1.3;
+    flex: 1;
+}
+
+/* Tombol tutup */
+.narasi-dropdown-close {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.15);
+    /* Transparan putih */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 2rem;
+    /* Bulat penuh */
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.narasi-dropdown-close:hover {
+    background: rgba(255, 255, 255, 0.25);
+    /* Lebih terang saat hover */
+}
+
+/* Body - tidak perlu karena 1 layer */
+.narasi-dropdown-body {
+    padding: 0;
+    /* Tidak ada padding tambahan */
+}
+
+/* Teks narasi */
+.narasi-dropdown-text {
+    margin: 0;
+    padding: 0;
+    /* Tidak ada padding */
+    background: transparent;
+    /* Transparan */
+    border: none;
+    /* Tidak ada border */
+    border-radius: 0;
+    font-size: 1rem;
+    /* Ukuran font */
+    line-height: 1.85;
+    /* Jarak antar baris */
+    color: rgba(255, 255, 255, 0.9);
+    /* Teks putih 90% */
+    white-space: pre-line;
+    box-shadow: none;
+}
+
+/* ============================================
+   RESPONSIVE - Tampilan mobile (<768px)
+   ============================================ */
+
+@media (max-width: 768px) {
+    .galeri-slider {
+        aspect-ratio: 4/3;
+        /* Rasio 4:3 di mobile */
+        border-radius: 1rem;
+    }
+
+    .galeri-caption {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 1rem;
+        /* Padding lebih kecil */
+    }
+
+    .galeri-caption h3 {
+        font-size: 1.1rem;
+        /* Font lebih kecil */
+    }
+
+    .galeri-caption p {
+        font-size: 0.8rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        /* Maksimal 2 baris */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .galeri-nav {
+        width: 40px;
+        /* Tombol lebih kecil */
+        height: 40px;
+        opacity: 1;
+        /* Selalu tampil di mobile */
+    }
+
+    .galeri-nav.prev {
+        left: 0.75rem;
+    }
+
+    .galeri-nav.next {
+        right: 0.75rem;
+    }
+
+    .galeri-detail-btn {
+        right: 1rem;
+        bottom: 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .narasi-dropdown.active {
+        margin-top: 1rem;
+    }
+
+    .narasi-dropdown-header {
+        padding: 1rem 1.25rem;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .narasi-dropdown-title {
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    .narasi-dropdown-close {
+        padding: 0.4rem 0.85rem;
+        font-size: 0.8rem;
+    }
+
+    .narasi-dropdown-body {
+        padding: 1rem;
+    }
+
+    .narasi-dropdown-text {
+        padding: 1rem;
+        font-size: 0.95rem;
+        line-height: 1.75;
+    }
+}
+
+/* ============================================
+   OFFICIAL BADGE - Glassmorphism news-style label
+   ============================================ */
+
+.official-badge {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding: 0.6rem 0;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    pointer-events: none;
+    transition: all 0.4s ease;
+}
+
+.badge-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--warna-aksen, #fbbf24);
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.6);
+}
+
+.badge-dot::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border: 1.5px solid var(--warna-aksen, #fbbf24);
+    border-radius: 50%;
+    animation: badge-pulse 2s infinite;
+}
+
+@keyframes badge-pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+.badge-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.badge-title {
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    line-height: 1.1;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.badge-subtitle {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.65rem;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+    .official-badge {
+        top: 1rem;
+        left: 1rem;
+        padding: 0.4rem 1rem;
+        gap: 0.6rem;
+    }
+
+    .badge-title {
+        font-size: 0.7rem;
+        letter-spacing: 1.5px;
+    }
+
+    .badge-subtitle {
+        font-size: 0.55rem;
+    }
+
+    .badge-dot {
+        width: 8px;
+        height: 8px;
+    }
+}

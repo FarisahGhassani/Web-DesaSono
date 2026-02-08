@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfilDesaController;
 use App\Http\Controllers\PetaController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\TransparansiController;
+use App\Http\Controllers\WartaController;
 
 // Controllers Admin
 use App\Http\Controllers\Admin\DashboardController;
@@ -35,6 +36,9 @@ Route::get('/peta', [PetaController::class, 'index'])->name('peta');
 
 // Halaman Galeri
 Route::get('/galeri', [GaleriController::class, 'index'])->name('galeri.index');
+
+// Halaman Detail Warta/Berita (Untuk SEO)
+Route::get('/warta/{slug}', [WartaController::class, 'show'])->name('warta.show');
 
 
 // Halaman Transparansi
@@ -73,6 +77,81 @@ Route::post('/admin/logout', function () {
     request()->session()->regenerateToken();
     return redirect()->route('beranda');
 })->name('admin.logout');
+
+/*
+|--------------------------------------------------------------------------
+| Routes Preview Admin (Tanpa Login - HANYA UNTUK DEVELOPMENT)
+|--------------------------------------------------------------------------
+| Routes ini untuk melihat tampilan admin tanpa perlu login
+| HAPUS routes ini sebelum deploy ke production!
+*/
+
+Route::prefix('admin/preview')->name('preview.admin.')->group(function () {
+    // Dashboard Preview
+    Route::get('/', function () {
+        $statistik = [
+            'totalGaleri' => 5,
+            'totalDokumenApbdes' => 3,
+            'totalDokumenPerdes' => 4,
+            'galeriDipublikasikan' => 3,
+        ];
+        $galeriTerbaru = collect([]);
+        return view('admin.dashboard', compact('statistik', 'galeriTerbaru'));
+    })->name('dashboard');
+
+    // Galeri Preview
+    Route::get('/galeri', function () {
+        $daftarGaleri = new \Illuminate\Pagination\LengthAwarePaginator([], 0, 10);
+        return view('admin.galeri.index', compact('daftarGaleri'));
+    })->name('galeri');
+
+    Route::get('/galeri/form', function () {
+        $judulHalaman = 'Tambah Dokumentasi';
+        $galeri = null;
+        return view('admin.galeri.form', compact('judulHalaman', 'galeri'));
+    })->name('galeri.form');
+
+    // APBDes Preview
+    Route::get('/apbdes', function () {
+        $dokumenApbdes = new \Illuminate\Pagination\LengthAwarePaginator([], 0, 10);
+        return view('admin.apbdes.index', compact('dokumenApbdes'));
+    })->name('apbdes');
+
+    Route::get('/apbdes/form', function () {
+        $judulHalaman = 'Tambah Dokumen APBDes';
+        $dokumen = null;
+        return view('admin.apbdes.form', compact('judulHalaman', 'dokumen'));
+    })->name('apbdes.form');
+
+    // PerDes Preview
+    Route::get('/perdes', function () {
+        $dokumenPerdes = new \Illuminate\Pagination\LengthAwarePaginator([], 0, 10);
+        return view('admin.perdes.index', compact('dokumenPerdes'));
+    })->name('perdes');
+
+    Route::get('/perdes/form', function () {
+        $judulHalaman = 'Tambah Peraturan Desa';
+        $dokumen = null;
+        return view('admin.perdes.form', compact('judulHalaman', 'dokumen'));
+    })->name('perdes.form');
+
+    // Pengaturan Preview
+    Route::get('/informasi-desa', function () {
+        $infoDesa = [];
+        return view('admin.pengaturan.informasi-desa', compact('infoDesa'));
+    })->name('informasi-desa');
+
+    Route::get('/perangkat-desa', function () {
+        $perangkatDesa = new \Illuminate\Pagination\LengthAwarePaginator([], 0, 10);
+        return view('admin.pengaturan.perangkat-desa', compact('perangkatDesa'));
+    })->name('perangkat-desa');
+
+    Route::get('/perangkat-desa/form', function () {
+        $judulHalaman = 'Tambah Perangkat Desa';
+        $perangkat = null;
+        return view('admin.pengaturan.form-perangkat', compact('judulHalaman', 'perangkat'));
+    })->name('perangkat.form');
+});
 
 /*
 |--------------------------------------------------------------------------

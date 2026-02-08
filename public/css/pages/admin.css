@@ -4,78 +4,552 @@
 |--------------------------------------------------------------------------
 | File ini mengatur tampilan khusus untuk pengelola website (Admin).
 | Berisi gaya untuk Sidebar (menu samping) dan layout dashboard.
+| Warna mengikuti tema hijau website utama.
 */
 
+/* ============================================
+   LAYOUT UTAMA
+   ============================================ */
 .admin-layout {
     display: flex;
     min-height: 100vh;
 }
 
+/* ============================================
+   SIDEBAR
+   ============================================ */
 .admin-sidebar {
-    width: 260px;
-    background: var(--warna-abu-900);
-    color: var(--warna-abu-300);
+    width: 280px;
+    background: linear-gradient(180deg, #0B1A0B 0%, #050d05 100%);
+    color: #a3b18a;
     padding: 1.5rem 0;
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
     overflow-y: auto;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+    z-index: 100;
 }
 
 .admin-sidebar-brand {
     padding: 0 1.5rem 1.5rem;
-    border-bottom: 1px solid var(--warna-abu-700);
-    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(163, 177, 138, 0.15);
+    margin-bottom: 1.5rem;
+}
+
+.admin-sidebar-brand h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #f2eee1;
+    margin: 0 0 0.25rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.admin-sidebar-brand span {
+    font-size: 0.8rem;
+    color: #6b7c5a;
+    font-weight: 400;
 }
 
 .admin-menu {
     padding: 0 0.75rem;
 }
 
+.admin-menu-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6b7c5a;
+    padding: 0.5rem 0.75rem;
+    margin-top: 0.5rem;
+}
+
 .admin-menu-item {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 0.75rem;
-    color: var(--warna-abu-400);
+    padding: 0.75rem 1rem;
+    color: #a3b18a;
     border-radius: 0.75rem;
-    transition: all 150ms ease;
+    transition: all 0.2s ease;
     margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.admin-menu-item svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
 }
 
 .admin-menu-item:hover {
-    background: var(--warna-abu-800);
-    color: #fff;
+    background: rgba(163, 177, 138, 0.1);
+    color: #f2eee1;
 }
 
 .admin-menu-item.active {
-    background: var(--warna-primer);
-    color: #fff;
+    background: linear-gradient(135deg, #1e331e 0%, #2d4a2d 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(30, 51, 30, 0.4);
 }
 
+/* ============================================
+   KONTEN UTAMA
+   ============================================ */
 .admin-konten {
     flex: 1;
-    margin-left: 260px;
+    margin-left: 280px;
     padding: 2rem;
-    background: var(--warna-abu-100);
+    background: #f2eee1;
     min-height: 100vh;
 }
 
+/* ============================================
+   HEADER HALAMAN
+   ============================================ */
 .admin-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.admin-judul {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #0B1A0B;
+    margin: 0;
+    letter-spacing: -0.025em;
+}
+
+/* ============================================
+   KARTU & KOMPONEN
+   ============================================ */
+.admin-konten .kartu {
+    background: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 1px 3px rgba(11, 26, 11, 0.08),
+        0 1px 2px rgba(11, 26, 11, 0.12);
+    border: 1px solid rgba(11, 26, 11, 0.08);
+    padding: 1.5rem;
+}
+
+.admin-konten .kartu.glass {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+/* ============================================
+   TABEL
+   ============================================ */
+.admin-konten .tabel-container {
+    overflow-x: auto;
+    margin: -1.5rem;
+    padding: 0;
+}
+
+.admin-konten .tabel {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-konten .tabel thead {
+    background: #f8f6f0;
+    border-bottom: 2px solid rgba(11, 26, 11, 0.1);
+}
+
+.admin-konten .tabel th {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6b7c5a;
+}
+
+.admin-konten .tabel td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #f2eee1;
+    color: #0B1A0B;
+    font-size: 0.9rem;
+}
+
+.admin-konten .tabel tbody tr:hover {
+    background: #faf9f5;
+}
+
+.admin-konten .tabel tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ============================================
+   BADGE / LABEL
+   ============================================ */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    white-space: nowrap;
+}
+
+.badge-primer {
+    background: #e8f0e8;
+    color: #1e331e;
+}
+
+.badge-sukses {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.badge-peringatan {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.badge-bahaya {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.badge-info {
+    background: #e8f0e8;
+    color: #1e331e;
+}
+
+/* ============================================
+   TOMBOL
+   ============================================ */
+.admin-konten .tombol {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.admin-konten .tombol-primer {
+    background: linear-gradient(135deg, #1e331e 0%, #2d4a2d 100%);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(30, 51, 30, 0.3);
+}
+
+.admin-konten .tombol-primer:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(30, 51, 30, 0.4);
+    background: linear-gradient(135deg, #2d4a2d 0%, #3d5a3d 100%);
+}
+
+.admin-konten .tombol-sekunder {
+    background: #f2eee1;
+    color: #0B1A0B;
+}
+
+.admin-konten .tombol-sekunder:hover {
+    background: #e8e4d7;
+}
+
+.admin-konten .tombol-outline {
+    background: transparent;
+    border: 1.5px solid rgba(11, 26, 11, 0.2);
+    color: #0B1A0B;
+}
+
+.admin-konten .tombol-outline:hover {
+    background: #f8f6f0;
+    border-color: rgba(11, 26, 11, 0.3);
+}
+
+.admin-konten .tombol-bahaya {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+}
+
+.admin-konten .tombol-bahaya:hover {
+    background: #fee2e2;
+}
+
+.admin-konten .tombol-kecil {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.8rem;
+}
+
+/* ============================================
+   FORM
+   ============================================ */
+.admin-konten .form-grup {
+    margin-bottom: 1.25rem;
+}
+
+.admin-konten .form-label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #0B1A0B;
+    margin-bottom: 0.5rem;
+}
+
+.admin-konten .form-input,
+.admin-konten .form-select,
+.admin-konten .form-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid rgba(11, 26, 11, 0.15);
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    background: #ffffff;
+    color: #0B1A0B;
+}
+
+.admin-konten .form-input:focus,
+.admin-konten .form-select:focus,
+.admin-konten .form-textarea:focus {
+    outline: none;
+    border-color: #1e331e;
+    box-shadow: 0 0 0 3px rgba(30, 51, 30, 0.1);
+}
+
+.admin-konten .form-input::placeholder,
+.admin-konten .form-textarea::placeholder {
+    color: #9ca3af;
+}
+
+.admin-konten .form-error {
+    color: #dc2626;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+}
+
+.form-section-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #0B1A0B;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    margin: 1.5rem 0 1rem;
+}
+
+.form-section-title:first-of-type {
+    margin-top: 0;
+}
+
+/* ============================================
+   ALERT / PESAN
+   ============================================ */
+.admin-konten .alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.admin-konten .alert-sukses {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #166534;
+}
+
+.admin-konten .alert-bahaya {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+}
+
+/* ============================================
+   STATS CARD (Dashboard)
+   ============================================ */
+.stat-card {
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(11, 26, 11, 0.08);
+    transition: all 0.2s ease;
+}
+
+.stat-card:hover {
+    box-shadow: 0 4px 12px rgba(11, 26, 11, 0.08);
+    transform: translateY(-2px);
+}
+
+.stat-card .stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-card .stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #0B1A0B;
+    margin: 0;
+}
+
+.stat-card .stat-label {
+    font-size: 0.875rem;
+    color: #6b7c5a;
+    margin: 0;
+}
+
+/* ============================================
+   EMPTY STATE
+   ============================================ */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.empty-state-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state h3 {
+    color: #0B1A0B;
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.empty-state p {
+    color: #6b7c5a;
+    margin-bottom: 1.5rem;
+}
+
+/* ============================================
+   GRID UTILITIES
+   ============================================ */
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* ============================================
+   FLEX UTILITIES
+   ============================================ */
+.flex {
+    display: flex;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.gap-2 {
+    gap: 0.5rem;
+}
+
+.gap-3 {
+    gap: 0.75rem;
+}
+
+.gap-4 {
+    gap: 1rem;
+}
+
+.gap-6 {
+    gap: 1.5rem;
+}
+
+/* ============================================
+   MARGIN UTILITIES
+   ============================================ */
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+
+.mb-8 {
+    margin-bottom: 2rem;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1280px) {
+    .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 1024px) {
     .admin-sidebar {
         transform: translateX(-100%);
         z-index: 500;
+        transition: transform 0.3s ease;
+    }
+
+    .admin-sidebar.open {
+        transform: translateX(0);
     }
 
     .admin-konten {
         margin-left: 0;
+        padding: 1.5rem;
+    }
+
+    .grid-2,
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .grid-4 {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-konten .tabel th,
+    .admin-konten .tabel td {
+        padding: 0.75rem 1rem;
     }
 }

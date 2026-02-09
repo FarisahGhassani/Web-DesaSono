@@ -5,10 +5,10 @@
 
 @section('content')
     <!-- 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                            BAGIAN HERO 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Ini adalah bagian paling atas dari halaman beranda.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Kamu bisa mengubah teks sambutan atau judul di sini.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                        -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        BAGIAN HERO 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Ini adalah bagian paling atas dari halaman beranda.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Kamu bisa mengubah teks sambutan atau judul di sini.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    -->
     <section class="hero">
         <div class="hero-batik hero-batik-left"></div>
         <div class="hero-batik hero-batik-right"></div>
@@ -168,9 +168,9 @@
     </section>
 
     <!-- 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    VISI & MISI 
-                                                                                                                                                                                                                                                                                                                                                                                                        Menampilkan visi utama dan poin-poin misi desa.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                VISI & MISI 
+                                                                                                                                                                                                                                                                                                                                                                                                                    Menampilkan visi utama dan poin-poin misi desa.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            -->
     <section class="seksi seksi-abu" id="visi-misi">
         <div class="wadah">
             <div class="seksi-header">
@@ -205,13 +205,11 @@
                 </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
+            <div class="misi-grid">
                 <!-- Misi Kategori 1 -->
-                <div
-                    style="background: #fff; border-radius: 1rem; padding: 1.5rem; border-left: 4px solid var(--warna-primer);">
-                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                        <div
-                            style="width: 40px; height: 40px; background: rgba(76, 90, 76, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <div class="misi-card">
+                    <div class="misi-card-header">
+                        <div class="misi-card-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                                 stroke="var(--warna-primer)" stroke-width="2">
                                 <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
@@ -220,11 +218,9 @@
                                 <path d="M16 3.13a4 4 0 010 7.75" />
                             </svg>
                         </div>
-                        <h4 style="margin: 0; font-size: 1.25rem; color: var(--warna-primer);">Desa Demokratis & Transparan
-                        </h4>
+                        <h4 class="misi-card-title">Desa Demokratis & Transparan</h4>
                     </div>
-                    <ul
-                        style="margin: 0; padding-left: 1.25rem; font-size: 1.25rem; color: var(--warna-abu-600); line-height: 1.8;">
+                    <ul class="misi-card-list">
                         <li>Menjadikan BPD sebagai leader dalam pengambilan kebijakan Pemerintah Desa melalui forum
                             Musyawarah Desa</li>
                         <li>Memfasilitasi BPD dalam menjalankan Tupoksinya pada pelaksanaan Musyawarah Desa</li>
@@ -238,22 +234,18 @@
                 </div>
 
                 <!-- Misi Kategori 2 -->
-                <div
-                    style="background: #fff; border-radius: 1rem; padding: 1.5rem; border-left: 4px solid var(--warna-primer);">
-                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-                        <div
-                            style="width: 40px; height: 40px; background: rgba(76, 90, 76, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <div class="misi-card">
+                    <div class="misi-card-header">
+                        <div class="misi-card-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                                 stroke="var(--warna-primer)" stroke-width="2">
                                 <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
                                 <polyline points="9 22 9 12 15 12 15 22" />
                             </svg>
                         </div>
-                        <h4 style="margin: 0; font-size: 1.25rem; color: var(--warna-primer);">Desa Sejahtera & Religius
-                        </h4>
+                        <h4 class="misi-card-title">Desa Sejahtera & Religius</h4>
                     </div>
-                    <ul
-                        style="margin: 0; padding-left: 1.25rem; font-size: 1.25rem; color: var(--warna-abu-600); line-height: 1.8;">
+                    <ul class="misi-card-list">
                         <li>Membangun Pasar Desa di tanah kas desa sebagai wadah perdagangan masyarakat</li>
                         <li>Membentuk BUMDesa sebagai wadah pengelola Unit Usaha milik Desa</li>
                         <li>Memberikan penyertaan Modal bagi BUMDesa</li>
@@ -269,9 +261,9 @@
     </section>
 
     <!-- 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    STRUKTUR ORGANISASI 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                Menampilkan daftar perangkat desa dengan foto mereka.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                STRUKTUR ORGANISASI 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                            Menampilkan daftar perangkat desa dengan foto mereka.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        -->
     <section class="seksi seksi-struktur" id="struktur">
         <div class="wadah">
             <div class="seksi-header">
@@ -440,8 +432,8 @@
     </section>
 
     <!--                                                                                                                                                                         BAGIAN LAYANAN/FITUR 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                       Menampilkan 4 keunggulan atau layanan utama desa.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                            -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   Menampilkan 4 keunggulan atau layanan utama desa.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        -->
     <section class="seksi seksi-gradient">
         <div class="wadah">
             <div class="seksi-header">
@@ -512,9 +504,9 @@
     </section>
 
     <!-- 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    PATIENT GALLERY SECTION 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    Only appears if documentation is published.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                PATIENT GALLERY SECTION 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                Only appears if documentation is published.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            -->
 
 
     <section class="seksi" id="berita-kegiatan">
@@ -620,9 +612,9 @@
     </section>
 
     <!-- 
-                                                                                                                                                                                                                                    VIDEO PROFIL 
-                                                                                                                                                                                                                                    Video profil desa dari YouTube.
-                                                                                                                                                                                                                                -->
+                                                                                                                                                                                                                                                VIDEO PROFIL 
+                                                                                                                                                                                                                                                Video profil desa dari YouTube.
+                                                                                                                                                                                                                                            -->
     <section class="seksi" id="video-profil">
         <div class="wadah">
             <div class="seksi-header text-center mx-auto max-w-800">
@@ -632,17 +624,17 @@
 
             <div class="video-container-wrapper">
                 <div class="video-container"
-                    style="background: linear-gradient(135deg, var(--warna-primer) 0%, #3d4a3d 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 400px;">
+                    style="background: linear-gradient(135deg, var(--warna-primer) 0%, #3d4a3d 100%);">
                     {{-- Video akan diupdate di sini ketika sudah tersedia --}}
                     {{-- Contoh: <iframe src="https://www.youtube.com/embed/VIDEO_ID" ...></iframe> --}}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none"
-                        stroke="rgba(255,255,255,0.5)" stroke-width="1.5">
-                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                    </svg>
-                    <p style="color: rgba(255,255,255,0.8); font-size: 1.25rem; margin-top: 1.5rem; font-weight: 600;">Video
-                        Profil Segera Hadir</p>
-                    <p style="color: rgba(255,255,255,0.5); font-size: 1rem; margin-top: 0.5rem;">Video sedang dalam proses
-                        produksi</p>
+                    <div class="video-placeholder-content">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none"
+                            stroke="rgba(255,255,255,0.5)" stroke-width="1.5">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        <p>Video Profil Segera Hadir</p>
+                        <p>Video sedang dalam proses produksi</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -650,8 +642,8 @@
 
     <!--                                                                                                                                                                                                                                                          RINGKASAN TRANSPARANSI 
 
-                                                                                                                                                                                                                                    // Buatkan section untuk embed video profile dari youtube                                                                                                                                                                                                                                                                Menghubungkan ke halaman transparansi atau folder Google Drive.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                             -->
+                                                                                                                                                                                                                                                // Buatkan section untuk embed video profile dari youtube                                                                                                                                                                                                                                                                Menghubungkan ke halaman transparansi atau folder Google Drive.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         -->
     <section class="seksi seksi-abu">
         <div class="wadah">
             <div class="seksi-header text-center mx-auto max-w-800">
@@ -675,9 +667,9 @@
     </section>
 
     <!-- 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 BAGIAN KONTAK / CTA 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 Mengajak pengunjung untuk menghubungi desa.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                             -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             BAGIAN KONTAK / CTA 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Mengajak pengunjung untuk menghubungi desa.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         -->
     <section class="seksi bg-cta text-white" id="faq">
         <div class="wadah" style="position: relative; z-index: 2;">
             <div class="max-w-800 mx-auto glass-card">

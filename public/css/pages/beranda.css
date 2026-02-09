@@ -449,6 +449,129 @@
 }
 
 /* ============================================
+   VISI MISI SECTION - RESPONSIVE
+   ============================================ */
+
+/* MISI Grid Layout */
+.misi-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+/* MISI Card Styling */
+.misi-card {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    border-left: 4px solid var(--warna-primer);
+}
+
+.misi-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.misi-card-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(76, 90, 76, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.misi-card-title {
+    margin: 0;
+    font-size: 1.25rem;
+    color: var(--warna-primer);
+    line-height: 1.3;
+}
+
+.misi-card-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    font-size: 1.1rem;
+    color: var(--warna-abu-600);
+    line-height: 1.8;
+}
+
+/* VISI Container Responsive */
+.visi-container {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--warna-primer) 0%, #3d4a3d 100%);
+    border-radius: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Responsive for MISI Grid */
+@media (max-width: 900px) {
+    .misi-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .misi-card-title {
+        font-size: 1.15rem;
+    }
+
+    .misi-card-list {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+}
+
+@media (max-width: 600px) {
+    .misi-grid {
+        gap: 1.25rem;
+    }
+
+    .misi-card {
+        padding: 1.25rem;
+        border-radius: 0.75rem;
+    }
+
+    .misi-card-header {
+        gap: 0.5rem;
+    }
+
+    .misi-card-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .misi-card-title {
+        font-size: 1rem;
+    }
+
+    .misi-card-list {
+        font-size: 0.95rem;
+        padding-left: 1rem;
+        line-height: 1.6;
+    }
+
+    .misi-card-list li {
+        margin-bottom: 0.5rem;
+    }
+
+    .visi-container {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .visi-container p {
+        font-size: 1rem !important;
+    }
+}
+
+/* ============================================
    STRUKTUR ORGANISASI - REDESIGNED
    ============================================ */
 
@@ -1595,6 +1718,40 @@
     width: 100%;
     height: 100%;
     border: 0;
+}
+
+/* Video placeholder content - centered */
+.video-placeholder-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.video-placeholder-content svg {
+    margin-bottom: 1rem;
+}
+
+.video-placeholder-content p {
+    margin: 0;
+}
+
+.video-placeholder-content p:first-of-type {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.video-placeholder-content p:last-of-type {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1rem;
 }
 
 /* FAQ Accordion Styles */
